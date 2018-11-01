@@ -51,7 +51,7 @@
 	enemy_jobs = list("Security Officer","Detective","Head of Security", "Captain")
 	required_enemies = list(1,1,0,0,0,0,0,0,0,0)
 	required_candidates = 1
-	weight = 3
+	weight = 2
 	cost = 30
 	requirements = list(80,60,40,20,20,10,10,10,10,10)
 
