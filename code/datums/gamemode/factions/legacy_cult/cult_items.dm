@@ -50,14 +50,13 @@
 
 /obj/item/clothing/head/legacy_culthood/cultify()
 	return
-
 /obj/item/clothing/head/legacy_culthood/alt
-	icon_state = "culthelmet_old"
-	item_state = "culthelmet_old"
+	icon_state = "cult_hoodalt"
+	item_state = "cult_hoodalt"
 
 /obj/item/clothing/suit/legacy_cultrobes/alt
-	icon_state = "cultarmor_old"
-	item_state = "cultarmor_old"
+	icon_state = "cultrobesalt"
+	item_state = "cultrobesalt"
 
 /obj/item/clothing/suit/legacy_cultrobes
 	name = "cult robes"
