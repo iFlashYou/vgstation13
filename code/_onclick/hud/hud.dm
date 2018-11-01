@@ -20,8 +20,6 @@ var/global/obj/abstract/screen/clicker/catcher = new()
 
 	var/obj/abstract/screen/lingchemdisplay
 	var/obj/abstract/screen/vampire_blood_display // /vg/
-	var/obj/abstract/screen/cult_Act_display // /vg/
-	var/obj/abstract/screen/cult_tattoo_display // /vg/
 	var/list/obj/abstract/screen/hand_hud_objects = list()
 	var/obj/abstract/screen/action_intent
 	var/obj/abstract/screen/move_intent
@@ -50,8 +48,6 @@ var/global/obj/abstract/screen/clicker/catcher = new()
 	help_intent = null
 	lingchemdisplay = null
 	vampire_blood_display = null
-	cult_Act_display = null
-	cult_tattoo_display = null
 	hand_hud_objects = null
 	action_intent = null
 	move_intent = null
