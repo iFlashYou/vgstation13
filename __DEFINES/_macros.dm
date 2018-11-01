@@ -239,9 +239,6 @@
 
 #define isdeathsquad(H) (H.mind && H.mind.GetRole(DEATHSQUAD))
 
-#define isERT(H) (H.mind && H.mind.GetRole(RESPONDER))
-
-
 
 
 

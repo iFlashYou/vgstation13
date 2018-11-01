@@ -506,7 +506,7 @@
 	name = RESPONDER
 	id = RESPONDER
 	special_role = RESPONDER
-	logo_state = "ERT_empty-logo"
+	logo_state = "ert-logo"
 
 //________________________________________________
 

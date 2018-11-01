@@ -14,13 +14,9 @@
 	var/id_suffix = "ERT_empty"
 
 /obj/item/clothing/head/helmet/space/ert/equipped(var/mob/M)
-	if (!isERT(M) || !ishuman(M))
-		return
 	var/mob/living/carbon/human/H = M
-
-	var/datum/role/emergency_responder/R = M.mind.GetRole(RESPONDER)
-	R.logo_state = "[id_suffix]-logo"
-
+	if(!istype(H))
+		return
 	if(H.get_item_by_slot(slot_head) == src)
 		var/obj/item/weapon/card/id/worn_id = H.get_item_by_slot(slot_wear_id)
 		if(istype(worn_id))
