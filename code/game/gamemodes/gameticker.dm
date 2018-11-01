@@ -75,8 +75,8 @@ var/datum/controller/gameticker/ticker
 	send2maindiscord("**Server is loaded** and in pre-game lobby at `[config.server? "byond://[config.server]" : "byond://[world.address]:[world.port]"]`")
 
 	do
-#ifdef GAMETICKER_LOBBY_DURATION
-		var/delay_timetotal = GAMETICKER_LOBBY_DURATION
+#ifdef UNIT_TESTS
+		var/delay_timetotal = 2 SECONDS
 #else
 		var/delay_timetotal = 5 MINUTES
 #endif
@@ -192,7 +192,7 @@ var/datum/controller/gameticker/ticker
 	//here to initialize the random events nicely at round start
 	setup_economy()
 
-#if UNIT_TESTS_AUTORUN
+#ifdef UNIT_TESTS
 	run_unit_tests()
 #endif
 
