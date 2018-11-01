@@ -59,7 +59,7 @@
 
 /mob/living/simple_animal/hostile/humanoid/wizard/doppelganger/New()
 	..()
-	var/spell/S = new /spell/targeted/projectile/magic_missile/spare_stunned
+	var/spell/S = new /spell/targeted/projectile/magic_missile
 	spell = S
 	add_spell(S, src)
 
