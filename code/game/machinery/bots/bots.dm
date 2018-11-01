@@ -28,7 +28,6 @@
 	for(var/datum/event/ionstorm/I in events)
 		if(istype(I) && I.active)
 			I.bots += src
-	bots_list += src
 	..()
 
 /obj/machinery/bot/Destroy()
@@ -36,7 +35,6 @@
 	if(botcard)
 		qdel(botcard)
 		botcard = null
-	bots_list -= src
 
 /obj/machinery/bot/proc/turn_on()
 	if(stat)
