@@ -355,7 +355,6 @@
 		user.put_in_hands(new /obj/item/weapon/bucket_sensor)
 		user.drop_from_inventory(src)
 		qdel(src)
-		return
 	attempt_heating(D, user)
 
 /obj/item/weapon/reagent_containers/glass/bucket/water_filled/New()
