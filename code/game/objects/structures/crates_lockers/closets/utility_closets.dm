@@ -157,7 +157,6 @@
 /obj/structure/closet/radiation/atoms_to_spawn()
 	return list(
 		/obj/item/clothing/suit/radiation = 2,
-		/obj/item/clothing/head/radiation = 2,
 		/obj/item/device/geiger_counter,
 	)
 
