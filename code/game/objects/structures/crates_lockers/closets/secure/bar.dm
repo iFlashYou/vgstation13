@@ -10,7 +10,7 @@
 	icon_off = "cabinetdetective_broken"
 
 
-/obj/structure/closet/secure_closet/bar/atoms_to_spawn()
+/obj/structure/closet/secure_closet/bar/New()
 	return list(
 		/obj/item/weapon/reagent_containers/food/drinks/beer = 10,
 	)
