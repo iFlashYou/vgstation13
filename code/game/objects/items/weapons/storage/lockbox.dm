@@ -247,10 +247,6 @@
 	..()
 	new /obj/item/weapon/gun/lawgiver(src)
 
-/obj/item/weapon/storage/lockbox/lawgiver/with_magazine/New()
-	..()
-	new /obj/item/ammo_storage/magazine/lawgiver(src)
-
 /obj/item/weapon/storage/lockbox/oneuse
 	desc = "A locked box. When unlocked, the case will fall apart."
 	oneuse = 1
