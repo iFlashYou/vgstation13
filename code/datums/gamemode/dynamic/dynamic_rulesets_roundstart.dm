@@ -191,7 +191,6 @@
 	weight = 5
 	cost = 30
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
-	var/operative_cap = list(2,2,3,3,4,5,5,5,5,5)
 
 /datum/dynamic_ruleset/roundstart/nuclear/execute()
 	//if ready() did its job, candidates should have 4 or more members in it
@@ -199,10 +198,8 @@
 	if (!nuclear)
 		nuclear = ticker.mode.CreateFaction(/datum/faction/syndicate/nuke_op, null, 1)
 
-	var/indice_pop = min(10,round(mode.roundstart_pop_ready/5)+1)
-	var/operatives = operative_cap[indice_pop]
 	var/leader = 1
-	for(var/operatives_number = 1 to operatives)
+	for(var/operatives_number = 1 to required_candidates)
 		if(candidates.len <= 0)
 			break
 		var/mob/M = pick(candidates)
