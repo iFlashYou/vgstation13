@@ -108,8 +108,6 @@ var/list/all_doors = list()
 		user = null
 
 	if(allowed(user))
-		if (isshade(user))
-			user.forceMove(loc)//They're basically slightly tangible ghosts, they can fit through doors as soon as they begin openning.
 		open()
 	else if(!operating)
 		denied()

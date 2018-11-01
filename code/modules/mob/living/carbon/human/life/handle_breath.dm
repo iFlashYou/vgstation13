@@ -98,7 +98,6 @@
 		species.handle_environment(environment, src)
 
 
-
 	if(breath)
 		loc.assume_air(breath)
 
