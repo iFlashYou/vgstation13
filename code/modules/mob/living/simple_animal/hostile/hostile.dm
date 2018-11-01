@@ -168,7 +168,7 @@
 					return 1
 		if((environment_smash_flags & OPEN_DOOR_STRONG) && istype(the_target, /obj/machinery/door/airlock))
 			var/obj/machinery/door/airlock/A = the_target
-			if(!A.density || A.operating)
+			if(!A.density)
 				return 0
 			return 1
 	return 0

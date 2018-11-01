@@ -1073,15 +1073,9 @@ About the new airlock wires panel:
 			if(level_of_door_opening < 2)
 				return
 			visible_message("<span class = 'warning'>\The [M] forces \the [src] [density?"open":"closed"]!</span>")
-			if(M.client)
-				density ? open(1):close(1)
-			else if(density)
-				open(1)
+			density ? open(1):close(1)
 		else
-			if(M.client)
-				density ? open(1):close(1)
-			else if(density)
-				open(1)
+			density ? open(1):close(1)
 
 
 //You can ALWAYS screwdriver a door. Period. Well, at least you can even if it's open
