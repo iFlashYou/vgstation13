@@ -75,7 +75,7 @@
 	. = ..()
 	if(. && isliving(user))
 		var/mob/living/L = user
-		L.sleeping += 10 // You can't faint when you're asleep.
+		L.SetSleeping(200)
 
 /datum/emote/living/flap
 	key = "flap"
