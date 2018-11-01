@@ -395,6 +395,19 @@ var/global/list/narsie_list = list()
 	overlays += image(icon,"glow-[icon_state]",overlay_layer)
 */
 
+
+/**
+ * Wizard narsie.
+ */
+/obj/machinery/singularity/narsie/wizard
+	grav_pull = 0
+
+/obj/machinery/singularity/narsie/wizard/eat()
+	set background = BACKGROUND_ENABLED
+
+	for (var/turf/T in trange(consume_range, src))
+		consume(T)
+
 /**
  * MR. CLEAN
  */
