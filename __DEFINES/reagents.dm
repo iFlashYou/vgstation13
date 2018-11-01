@@ -110,7 +110,6 @@
 #define MEDNANOBOTS 			"mednanobots"
 #define COMNANOBOTS 			"comnanobots"
 #define FLUOROSURFACTANT 			"fluorosurfactant"
-#define PICCOLYN			"piccolyn"
 #define NICOTINE 			"nicotine"
 #define AMMONIA 			"ammonia"
 #define SALINE				"saline"
