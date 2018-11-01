@@ -6,7 +6,6 @@
 
 	..()
 
-	blinded = null
 	var/datum/gas_mixture/environment // Added to prevent null location errors-- TLE
 	if(loc)
 		environment = loc.return_air()
