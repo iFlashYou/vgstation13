@@ -33,9 +33,6 @@
 /obj/structure/table/cultify()
 	new /obj/structure/table/woodentable(loc) //See New() for qdel
 
-/obj/structure/table/clockworkify()
-	GENERIC_CLOCKWORK_CONVERSION(src, /obj/structure/table/reinforced/clockwork, CLOCKWORK_GENERIC_GLOW)
-
 /obj/structure/table/New()
 	..()
 	for(var/obj/structure/table/T in src.loc)
@@ -675,9 +672,6 @@
 	can_optable = FALSE
 
 /obj/structure/table/reinforced/clockwork/cultify()
-	return
-
-/obj/structure/table/reinforced/clockwork/clockworkify()
 	return
 
 /*
