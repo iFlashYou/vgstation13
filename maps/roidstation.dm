@@ -35,5 +35,4 @@
 
 ////////////////////////////////////////////////////////////////
 #include "roidstation/areas.dm"
-#include "roidstation/pipes.dm" // More atmos layered pipes
 #include "roidstation.dmm"
