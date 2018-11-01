@@ -98,7 +98,6 @@
 				return
 			if("supply")
 				supply()
-		qdel(R)
 		user.take_organ_damage(5, 0)
 		if(use_charge)
 			uses--
