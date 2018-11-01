@@ -25,10 +25,9 @@
 	var/start_with_lantern = /obj/item/device/flashlight/lantern/on
 	var/busy = 0
 
-/obj/structure/hanging_lantern/New(turf/T, var/build_dir)
+/obj/structure/hanging_lantern/New()
 
 	..()
-	dir = build_dir
 
 	if(start_with_lantern)
 		lantern = new start_with_lantern(src)
