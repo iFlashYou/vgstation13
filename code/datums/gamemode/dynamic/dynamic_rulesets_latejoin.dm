@@ -47,7 +47,7 @@
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 1
-	cost = 50
+	cost = 20
 	requirements = list(90,90,70,40,30,20,10,10,10,10)
 
 /datum/dynamic_ruleset/latejoin/raginmages/acceptable(var/population=0,var/threat=0)
@@ -57,7 +57,6 @@
 		return 0
 	if (locate(/datum/dynamic_ruleset/roundstart/wizard) in mode.executed_rules)
 		weight = 10
-		cost = 10
 
 	return ..()
 
