@@ -1676,9 +1676,9 @@ Game Mode config tags:
 	A.starting = T
 	A.yo = U.y - T.y
 	A.xo = U.x - T.x
-	playsound(T, fire_sound, 75, 1)
+	playsound(T, fire_sound, 50, 1)
+	A.OnFired()
 	spawn()
-		A.OnFired()
 		A.process()
 
 
