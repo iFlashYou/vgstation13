@@ -17,136 +17,142 @@ var/global/Holiday = null
 	if(!Holiday)  //  Holiday stuff was not enabled in the config!
 		return
 
-	var/list/current_holidays = list()	//Because it's possible to have multiple holidays on the same day
-
 	Holiday = null // reset our switch now so we can recycle it as our Holiday name
 
 	var/YY = text2num(time2text(world.timeofday, "YY")) 	// get the current year
 	var/MM = text2num(time2text(world.timeofday, "MM")) 	// get the current month
 	var/DD = text2num(time2text(world.timeofday, "DD")) 	// get the current day
 
-	var/list/Easter_date = Computus()
-
 	// Main switch. If any of these are too dumb/inappropriate, or you have better ones, feel free to change whatever
 	switch(MM)
 		if(1) // Jan
 			switch(DD)
 				if(1)
-					current_holidays += NEW_YEARS_DAY
+					Holiday = NEW_YEARS_DAY
 
 		if(2) // Feb
 			switch(DD)
 				if(2)
-					current_holidays += GROUNDHOG_DAY
+					Holiday = GROUNDHOG_DAY
 				if(14)
-					current_holidays += VALENTINES_DAY
+					Holiday = VALENTINES_DAY
 				if(17)
-					current_holidays += RANDOM_ACTS_OF_KINDNESS_DAY
+					Holiday = RANDOM_ACTS_OF_KINDNESS_DAY
 
 		if(3) // Mar
 			switch(DD)
 				if(14)
-					current_holidays += PI_DAY
+					Holiday = PI_DAY
 				if(17)
-					current_holidays += ST_PATRICKS_DAY
+					Holiday = ST_PATRICKS_DAY
+				if(27)
+					if(YY == 16)
+						Holiday = EASTER
+				if(31)
+					if(YY == 13)
+						Holiday = EASTER
 
 		if(4) // Apr
 			switch(DD)
 				if(1)
-					current_holidays += APRIL_FOOLS_DAY
+					Holiday = APRIL_FOOLS_DAY
+					if(YY == 18 && prob(50))
+						Holiday = EASTER
 				if(2)
-					current_holidays += AUTISM_AWARENESS_DAY
+					Holiday = AUTISM_AWARENESS_DAY
+				if(5)
+					if(YY == 15)
+						Holiday = EASTER
+				if(16)
+					if(YY == 17)
+						Holiday = EASTER
 				if(20)
-					current_holidays += FOUR_TWENTY
+					Holiday = FOUR_TWENTY
+					if(YY == 14 && prob(50))
+						Holiday = EASTER
 				if(22)
-					current_holidays += EARTH_DAY
+					Holiday = EARTH_DAY
 
 		if(5) // May
 			switch(DD)
 				if(1)
-					current_holidays += LABOUR_DAY
+					Holiday = LABOUR_DAY
 				if(4)
-					current_holidays += FIREFIGHTERS_DAY
+					Holiday = FIREFIGHTERS_DAY
 				if(12)
-					current_holidays += OWL_AND_PUSSYCAT_DAY // what a dumb day of observence...but we -do- have costumes already :3
+					Holiday = OWL_AND_PUSSYCAT_DAY // what a dumb day of observence...but we -do- have costumes already :3
 
 		if(6) // Jun
 			switch(DD)
 				if(18)
-					current_holidays += INTERNATIONAL_PICNIC_DAY
+					Holiday = INTERNATIONAL_PICNIC_DAY
 				if(21)
-					current_holidays += SUMMER_SOLSTICE // its not always the 21 but sue me
+					Holiday = SUMMER_SOLSTICE // its not always the 21 but sue me
 
 		if(7) // Jul
 			switch(DD)
 				if(1)
-					current_holidays += DOCTORS_DAY
+					Holiday = DOCTORS_DAY
 				if(2)
-					current_holidays += UFO_DAY
+					Holiday = UFO_DAY
 				if(8)
-					current_holidays += WRITERS_DAY
+					Holiday = WRITERS_DAY
 				if(30)
-					current_holidays += FRIENDSHIP_DAY
+					Holiday = FRIENDSHIP_DAY
 
 		if(8) // Aug
 			switch(DD)
 				if(5)
-					current_holidays += BEER_DAY
+					Holiday = BEER_DAY
 
 		if(9) // sep
 			switch(DD)
 				if(19)
-					current_holidays += TALK_LIKE_A_PIRATE_DAY
+					Holiday = TALK_LIKE_A_PIRATE_DAY
 				if(28)
-					current_holidays += STUPID_QUESTIONS_DAY
+					Holiday = STUPID_QUESTIONS_DAY
 
 		if(10) // Oct
 			switch(DD)
 				if(4)
-					current_holidays += ANIMALS_DAY
+					Holiday = ANIMALS_DAY
 				if(7)
-					current_holidays += SMILING_DAY
+					Holiday = SMILING_DAY
 				if(16)
-					current_holidays += BOSS_DAY
+					Holiday = BOSS_DAY
 				if(31)
-					current_holidays += HALLOWEEN
+					Holiday = HALLOWEEN
 
 		if(11) // Nov
 			switch(DD)
 				if(1)
-					current_holidays += VEGAN_DAY
+					Holiday = VEGAN_DAY
 				if(13)
-					current_holidays += KINDNESS_DAY
+					Holiday = KINDNESS_DAY
 				if(19)
-					current_holidays += FLOWERS_DAY
+					Holiday = FLOWERS_DAY
 				if(21)
-					current_holidays += SAYING_HELLO_DAY
+					Holiday = SAYING_HELLO_DAY
 
 		if(12) // Dec
 			switch(DD)
 				if(10)
-					current_holidays += HUMAN_RIGHTS_DAY
+					Holiday = HUMAN_RIGHTS_DAY
 				if(14)
-					current_holidays += MONKEY_DAY
+					Holiday = MONKEY_DAY
 				if(21)
 					if(YY==12)
-						current_holidays += END_OF_THE_WORLD
+						Holiday = END_OF_THE_WORLD
 				if(22)
-					current_holidays += ORGASMING_DAY	//lol. These all actually exist
+					Holiday = ORGASMING_DAY	//lol. These all actually exist
 				if(24)
-					current_holidays += XMAS_EVE
+					Holiday = XMAS_EVE
 				if(25)
-					current_holidays += XMAS
+					Holiday = XMAS
 				if(26)
-					current_holidays += BOXING_DAY
+					Holiday = BOXING_DAY
 				if(31)
-					current_holidays += NEW_YEARS_EVE
-
-	if(MM == Easter_date["month"] && DD == Easter_date["day"])
-		current_holidays += EASTER
-
-	Holiday = pick(current_holidays)
-
+					Holiday = NEW_YEARS_EVE
 	if(!Holiday)
 		// Friday the 13th
 		if(DD == 13)
@@ -194,38 +200,3 @@ var/global/Holiday = null
 		if(XMAS_EVE,XMAS)
 			if(prob(eventchance))
 				ChristmasEvent()
-
-/proc/Computus()	//This proc calculates the date that Easter falls on for a given year.
-	var/current_year = text2num(time2text(world.timeofday, "YYYY"))
-	var/M
-	var/N
-	switch(current_year)
-		if(1900 to 2099)
-			M = 24
-			N = 5
-		if(2100 to 2199)
-			M = 24
-			N = 6
-		if(2200 to 2299)
-			M = 25
-			N = 0
-		else
-			return	//Easter machine needs maintenance in 300 years
-	var/a = current_year % 19
-	var/b = current_year % 4
-	var/c = current_year % 7
-	var/d = (19*a + M) % 30
-	var/e = (2*b + 4*c + 6*d + N) % 7
-	var/list/Easter_date = list("month" = 0, "day" = 0)
-	if((d + e) < 10)
-		Easter_date["month"] = 3
-		Easter_date["day"] = (d + e + 22)
-	else if((d + e) > 9)
-		Easter_date["month"] = 4
-		Easter_date["day"] = (d + e - 9)
-	if(Easter_date["month"] == 4 && Easter_date["day"] == 26)
-		Easter_date["day"] = 19
-	if(Easter_date["month"] == 4 && Easter_date["day"] == 25 && d == 28 && e == 6 && a > 10)
-		Easter_date["day"] = 18
-
-	return Easter_date
