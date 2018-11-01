@@ -145,8 +145,7 @@ var/global/Holiday = null
 	if(MM == Easter_date["month"] && DD == Easter_date["day"])
 		current_holidays += EASTER
 
-	if(current_holidays.len)
-		Holiday = pick(current_holidays)
+	Holiday = pick(current_holidays)
 
 	if(!Holiday)
 		// Friday the 13th
