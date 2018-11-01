@@ -26,8 +26,6 @@
 	return
 
 /obj/machinery/computer/HolodeckControl/proc/spawn_holoperson(mob/dead/observer/user)
-	if (!istype(user) || user.stat != DEAD )
-		return
 	if(stat & (NOPOWER|BROKEN|MAINT))
 		return
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
@@ -120,7 +118,6 @@
 	else
 		if(issilicon(user))
 			dat += "<A href='?src=\ref[src];AIoverride=1'>(<font color=red>Override Safety Protocols?</font>)</A><BR>"
-
 
 		dat += {"<BR>
 			Safety Protocols are <font color=green> ENABLED </font><BR>"}
