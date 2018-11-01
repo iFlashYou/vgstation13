@@ -14,7 +14,6 @@
 	var/reskinned = FALSE
 	var/reskin_selectable = TRUE // set to FALSE if a subtype is meant to not normally be available as a reskin option (fluff ones will get re-added through their list)
 	var/list/fluff_transformations = list() //does it have any special transformations only accessible to it? Should only be subtypes of /obj/item/weapon/nullrod
-	var/fluff_pickup = "pulverize"
 
 /obj/item/weapon/nullrod/suicide_act(mob/user)
 	user.visible_message("<span class='danger'>[user] is impaling \himself with \the [src]! It looks like \he's trying to commit suicide.</span>")
@@ -80,7 +79,7 @@
 /obj/item/weapon/nullrod/pickup(mob/living/user as mob)
 	if(user.mind)
 		if(user.mind.assigned_role == "Chaplain")
-			to_chat(user, "<span class='notice'>\The [src] is teeming with divine power. You feel like you could [fluff_pickup] a horde of undead with this.</span>")
+			to_chat(user, "<span class='notice'>The obsidian rod is teeming with divine power. You feel like you could pulverize a horde of undead with this.</span>")
 		if(ishuman(user)) //Typecasting, only humans can be vampires
 			var/datum/role/vampire/V = isvampire(user)
 			if(V && !(VAMP_UNDYING in V.powers))
@@ -135,7 +134,6 @@
 	slot_flags = SLOT_BACK|SLOT_BELT
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
-	fluff_pickup = "dice"
 
 /obj/item/weapon/nullrod/sword/IsShield()
 	return prob(10) //Only TRIES to block 10% of the attacks. SO MANY LAYERS OF RNG but hey.
@@ -151,8 +149,6 @@
 	desc = "This weapon can cut clean through plasteel because its blade was folded over a thousand times, making it vastly superior to any other holy weapon."
 	icon_state = "katana"
 	item_state = "katana"
-	fluff_pickup = "bisect"
-
 
 /obj/item/weapon/nullrod/toolbox //Syndicate/Robust religion
 	name = "nullbox"
@@ -164,7 +160,6 @@
 	attack_verb = list("robusts", "batters", "staves in")
 	inhand_states = list("left_hand" = 'icons/mob/in-hand/left/toolbox_ihl.dmi', "right_hand" = 'icons/mob/in-hand/right/toolbox_ihr.dmi')
 	w_class = W_CLASS_LARGE
-	fluff_pickup = "robust"
 
 /obj/item/weapon/nullrod/spear //Ratvar? How!
 	name = "divine brass spear"
@@ -176,7 +171,6 @@
 	inhand_states = list("left_hand" = 'icons/mob/in-hand/left/swords_axes.dmi', "right_hand" = 'icons/mob/in-hand/right/swords_axes.dmi')
 	w_class = W_CLASS_LARGE
 	flags = TWOHANDABLE | FPRINT
-	fluff_pickup = "skewer"
 
 /obj/item/weapon/nullrod/spear/update_wield(var/mob/user)
 	icon_state = "clockwork[wielded ? 1 : 0]"
@@ -197,7 +191,6 @@
 	icon_state = "necrostaff"
 	item_state = "necrostaff"
 	w_class = W_CLASS_LARGE
-	fluff_pickup = "banish"
 
 /obj/item/weapon/nullrod/chain //Comdom religion
 	name = "heavenly chain"
@@ -208,7 +201,6 @@
 	slot_flags = SLOT_BELT
 	w_class = W_CLASS_MEDIUM
 	attack_verb = list("flogs", "whips", "lashes", "disciplines")
-	fluff_pickup = "dominate"
 
 /obj/item/weapon/nullrod/honk //CLown religion
 	name = "honk rod"
@@ -220,7 +212,6 @@
 	w_class = W_CLASS_MEDIUM
 	hitsound = 'sound/items/bikehorn.ogg'
 	attack_verb = list("HONKS")
-	fluff_pickup = "prank"
 
 /obj/item/weapon/nullrod/baguette //Mime religion
 	name = "french rod"
@@ -229,7 +220,6 @@
 	icon_state = "baguette"
 	item_state = "baguette"
 	w_class = W_CLASS_MEDIUM
-	fluff_pickup = "retreat from"
 
 /obj/item/weapon/nullrod/cane
 	name = "blessed cane"
@@ -248,7 +238,6 @@
 	w_class = W_CLASS_LARGE
 	attack_verb = list("bashes", "smashes", "pulverizes")
 	inhand_states = list("left_hand" = 'icons/mob/in-hand/left/swords_axes.dmi', "right_hand" = 'icons/mob/in-hand/right/swords_axes.dmi')
-	fluff_pickup = "smite"
 
 // The chaos blade, a ghost role talking sword. Unlike the nullrod skins this thing works as a proper shield and has sharpness.
 /obj/item/weapon/nullrod/sword/chaos
