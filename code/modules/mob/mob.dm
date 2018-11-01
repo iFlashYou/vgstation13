@@ -2015,6 +2015,7 @@ mob/proc/on_foot()
 		"bhunger",
 		"druggy",
 		"confused",
+		"antitoxs",
 		"sleeping",
 		"resting",
 		"lying",
