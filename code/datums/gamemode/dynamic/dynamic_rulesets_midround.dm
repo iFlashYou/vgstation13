@@ -8,8 +8,7 @@
 /datum/dynamic_ruleset/midround/autotraitor
 	name = "Syndicate Sleeper Agent"
 	role_category = ROLE_TRAITOR
-	protected_from_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "AI", "Merchant")
-	restricted_from_jobs = list("Cyborg","Mobile MMI")
+	restricted_from_jobs = list("Cyborg","Mobile MMI","Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	required_candidates = 1
 	weight = 7
 	cost = 5
