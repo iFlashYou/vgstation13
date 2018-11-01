@@ -4,7 +4,7 @@
 	layer = UNARY_PIPE_LAYER
 
 	var/datum/gas_mixture/air_contents
-	var/obj/machinery/atmospherics/node1
+	var/obj/machinery/atmospherics/node
 	var/datum/pipe_network/network
 
 /obj/machinery/atmospherics/unary/New()
@@ -24,7 +24,7 @@
 	layer = PIPING_LAYER(layer, piping_layer)
 
 /obj/machinery/atmospherics/unary/update_icon(var/adjacent_procd,node_list)
-	node_list = list(node1)
+	node_list = list(node)
 	..(adjacent_procd,node_list)
 
 
@@ -38,14 +38,14 @@
 	update_planes_and_layers()
 	initialize()
 	build_network()
-	if (node1)
-		node1.initialize()
-		node1.build_network()
+	if (node)
+		node.initialize()
+		node.build_network()
 	return 1
 
 // Housekeeping and pipe network stuff below
 /obj/machinery/atmospherics/unary/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
-	if(reference == node1)
+	if(reference == node)
 		network = new_network
 	if(new_network.normal_members.Find(src))
 		return 0
@@ -53,30 +53,35 @@
 	return null
 
 /obj/machinery/atmospherics/unary/Destroy()
-	if(node1)
-		node1.disconnect(src)
+	if(node)
+		node.disconnect(src)
 		if(network)
 			returnToPool(network)
-	node1 = null
+	node = null
 	..()
 
 /obj/machinery/atmospherics/unary/initialize()
-	if(node1)
+	if(node)
 		return
-	findAllConnections(initialize_directions)
+	var/node_connect = dir
+	for(var/obj/machinery/atmospherics/target in get_step(src,node_connect))
+		if(target.initialize_directions & get_dir(target,src))
+			if(target.piping_layer == piping_layer || target.pipe_flags & ALL_LAYER)
+				node = target
+				break
 	update_icon()
 	add_self_to_holomap()
 
 /obj/machinery/atmospherics/unary/build_network()
-	if(!network && node1)
+	if(!network && node)
 		network = getFromPool(/datum/pipe_network)
 		network.normal_members += src
-		network.build_network(node1, src)
+		network.build_network(node, src)
 
 
 /obj/machinery/atmospherics/unary/return_network(obj/machinery/atmospherics/reference)
 	build_network()
-	if(reference == node1 || reference == src)
+	if(reference == node || reference == src)
 		return network
 	return null
 
@@ -92,10 +97,10 @@
 	return results
 
 /obj/machinery/atmospherics/unary/disconnect(obj/machinery/atmospherics/reference)
-	if(reference==node1)
+	if(reference==node)
 		if(network)
 			returnToPool(network)
-		node1 = null
+		node = null
 	return ..()
 
 /obj/machinery/atmospherics/unary/unassign_network(datum/pipe_network/reference)

@@ -34,12 +34,12 @@
 	if(connected_device)
 		connected_device.disconnect()
 
-	if(node1)
-		node1.disconnect(src)
+	if(node)
+		node.disconnect(src)
 		if(network)
 			returnToPool(network)
 
-	node1 = null
+	node = null
 
 	..()
 
@@ -52,7 +52,7 @@
 /obj/machinery/atmospherics/unary/portables_connector/return_network(obj/machinery/atmospherics/reference)
 	build_network()
 
-	if(reference==node1)
+	if(reference==node)
 		return network
 
 	if(reference==connected_device)
