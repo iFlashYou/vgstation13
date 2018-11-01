@@ -13,28 +13,41 @@
 	return 0
 
 //Attempt to perform suicide with an item in our hand
-//Return 0 if the suicide failed, return 1 if successful. Returning 1 does not perform the default suicide afterwards
+//Return 0 if the suicide failed, return 1 if succesful. Returning 1 does not perform the default suicide afterwards
 /mob/living/proc/attempt_item_suicide(var/obj/item/suicide_item)
 
 	if(suicide_item) //We need the item to be there to begin, otherwise abort
 		var/damagetype = suicide_item.suicide_act(src)
 		if(damagetype)
-			var/damage_mod = count_set_bitflags(damagetype) // How many damage types are to be applied
+			var/damage_mod = 1
+			switch(damagetype) //Sorry about the magic numbers.
+							   //brute = 1, burn = 2, tox = 4, oxy = 8
+				if(15) //4 damage types
+					damage_mod = 4
 
-			if(damagetype & SUICIDE_ACT_CUSTOM)
-				return 1
+				if(6, 11, 13, 14) //3 damage types
+					damage_mod = 3
+
+				if(3, 5, 7, 9, 10, 12) //2 damage types
+					damage_mod = 2
+
+				if(1, 2, 4, 8) //1 damage type
+					damage_mod = 1
+
+				else //No special suicide exists for this item or something fucked up, abort and go for a normal suicide instead
+					return
 
 			//Do 175 damage divided by the number of damage types applied.
-			if(damagetype & SUICIDE_ACT_BRUTELOSS)
+			if(damagetype & BRUTELOSS)
 				adjustBruteLoss(175/damage_mod)
 
-			if(damagetype & SUICIDE_ACT_FIRELOSS)
+			if(damagetype & FIRELOSS)
 				adjustFireLoss(175/damage_mod)
 
-			if(damagetype & SUICIDE_ACT_TOXLOSS)
+			if(damagetype & TOXLOSS)
 				adjustToxLoss(175/damage_mod)
 
-			if(damagetype & SUICIDE_ACT_OXYLOSS)
+			if(damagetype & OXYLOSS)
 				adjustOxyLoss(175/damage_mod)
 
 			updatehealth()

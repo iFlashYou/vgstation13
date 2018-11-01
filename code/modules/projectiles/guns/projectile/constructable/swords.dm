@@ -18,7 +18,7 @@
 
 /obj/item/weapon/sword/suicide_act(mob/user)
 	to_chat(viewers(user), "<span class='danger'>[user] is falling on the [src.name]! It looks like \he's trying to commit suicide.</span>")
-	return(SUICIDE_ACT_BRUTELOSS)
+	return(BRUTELOSS)
 
 /obj/item/weapon/sword/attack_self(mob/user as mob)
 	if(!hypo)
