@@ -1,5 +1,5 @@
 /spell/shapeshift
-	name = "Shapeshift (1)"
+	name = "Shapeshift"
 	desc = "Changes your name and appearance and has a cooldown of 3 minutes."
 	abbreviation = "SS"
 
