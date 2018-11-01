@@ -72,10 +72,9 @@
 				return "Unknown"
 		else
 			return real_name
-	if(mind) // monkeyhumans exist, don't descriminate
-		var/datum/role/changeling/changeling = mind.GetRole(CHANGELING)
-		if(changeling && changeling.mimicing)
-			return changeling.mimicing
+	var/datum/role/changeling/changeling = mind.GetRole(CHANGELING)
+	if(changeling && changeling.mimicing)
+		return changeling.mimicing
 	if(GetSpecialVoice())
 		return GetSpecialVoice()
 	return real_name
