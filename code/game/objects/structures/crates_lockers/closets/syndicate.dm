@@ -9,96 +9,112 @@
 /obj/structure/closet/syndicate/personal
 	desc = "It's a storage unit for operative gear."
 
-/obj/structure/closet/syndicate/personal/atoms_to_spawn()
-	return list(
-		/obj/item/weapon/tank/jetpack/oxygen/nukeops,
-		/obj/item/clothing/mask/gas/syndicate,
-		/obj/item/clothing/under/syndicate,
-		/obj/item/clothing/head/helmet/space/rig/syndi,
-		/obj/item/clothing/suit/space/rig/syndi,
-		/obj/item/weapon/crowbar/red,
-		/obj/item/weapon/cell/high,
-		/obj/item/device/pda/syndicate/door,
-		/obj/item/device/multitool,
-		/obj/item/weapon/pinpointer/nukeop,
-		/obj/item/weapon/shield/energy,
-		/obj/item/clothing/shoes/magboots/syndie,
-	)
+/obj/structure/closet/syndicate/personal/New()
+	..()
+	sleep(2)
+	new /obj/item/weapon/tank/jetpack/oxygen/nukeops(src)
+	new /obj/item/clothing/mask/gas/syndicate(src)
+	new /obj/item/clothing/under/syndicate(src)
+	new /obj/item/clothing/head/helmet/space/rig/syndi(src)
+	new /obj/item/clothing/suit/space/rig/syndi(src)
+	new /obj/item/weapon/crowbar/red(src)
+	new /obj/item/weapon/cell/high(src)
+	new /obj/item/device/pda/syndicate/door(src)
+	new /obj/item/device/multitool(src)
+	new /obj/item/weapon/pinpointer/nukeop(src)
+	new /obj/item/weapon/shield/energy(src)
+	new /obj/item/clothing/shoes/magboots/syndie(src)
+
 
 /obj/structure/closet/syndicate/nuclear
 	desc = "It's a storage unit for nuclear-operative gear."
 
-/obj/structure/closet/syndicate/nuclear/atoms_to_spawn()
-	return list(
-		/obj/item/ammo_storage/magazine/a12mm/ops = 5,
-		/obj/item/weapon/storage/box/handcuffs,
-		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/storage/box/emps,
-		/obj/item/weapon/gun/energy/gun = 5,
-		/obj/item/device/pda/syndicate,
-		/obj/item/device/radio/uplink/nukeops,
-	)
+/obj/structure/closet/syndicate/nuclear/New()
+	..()
+	sleep(2)
+	new /obj/item/ammo_storage/magazine/a12mm/ops(src)
+	new /obj/item/ammo_storage/magazine/a12mm/ops(src)
+	new /obj/item/ammo_storage/magazine/a12mm/ops(src)
+	new /obj/item/ammo_storage/magazine/a12mm/ops(src)
+	new /obj/item/ammo_storage/magazine/a12mm/ops(src)
+	new /obj/item/weapon/storage/box/handcuffs(src)
+	new /obj/item/weapon/storage/box/flashbangs(src)
+	new /obj/item/weapon/storage/box/emps(src)
+	new /obj/item/weapon/gun/energy/gun(src)
+	new /obj/item/weapon/gun/energy/gun(src)
+	new /obj/item/weapon/gun/energy/gun(src)
+	new /obj/item/weapon/gun/energy/gun(src)
+	new /obj/item/weapon/gun/energy/gun(src)
+	new /obj/item/device/pda/syndicate(src)
+	var/obj/item/device/radio/uplink/U = new(src)
+	U.hidden_uplink.uses = 80
+	return
 
-/obj/structure/closet/syndicate/resources
+/obj/structure/closet/syndicate/resources/
 	desc = "An old, dusty locker."
 
-/obj/structure/closet/syndicate/resources/spawn_contents()
-	..()
-	var/common_min = 30 //Minimum amount of minerals in the stack for common minerals
-	var/common_max = 50 //Maximum amount of HONK in the stack for HONK common minerals
-	var/rare_min = 5  //Minimum HONK of HONK in the stack HONK HONK rare minerals
-	var/rare_max = 20 //Maximum HONK HONK HONK in the HONK for HONK rare HONK
+	New()
+		..()
+		var/common_min = 30 //Minimum amount of minerals in the stack for common minerals
+		var/common_max = 50 //Maximum amount of HONK in the stack for HONK common minerals
+		var/rare_min = 5  //Minimum HONK of HONK in the stack HONK HONK rare minerals
+		var/rare_max = 20 //Maximum HONK HONK HONK in the HONK for HONK rare HONK
 
-	var/pickednum = rand(1, 50)
 
-	//Sad trombone
-	if(pickednum == 1)
-		var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(src)
-		P.name = "IOU"
-		P.info = "Sorry man, we needed the money so we sold your stash. It's ok, we'll double our money for sure this time!"
+		sleep(2)
 
-	//Metal (common ore)
-	if(pickednum >= 2)
-		var/obj/item/stack/sheet/metal/M = getFromPool(/obj/item/stack/sheet/metal, get_turf(src))
-		M.amount = rand(common_min, common_max)
+		var/pickednum = rand(1, 50)
 
-	//Glass (common ore)
-	if(pickednum >= 5)
-		new /obj/item/stack/sheet/glass/glass(src, rand(common_min, common_max))
+		//Sad trombone
+		if(pickednum == 1)
+			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(src)
+			P.name = "IOU"
+			P.info = "Sorry man, we needed the money so we sold your stash. It's ok, we'll double our money for sure this time!"
 
-	//Plasteel (common ore) Because it has a million more uses then plasma
-	if(pickednum >= 10)
-		new /obj/item/stack/sheet/plasteel(src, rand(common_min, common_max))
+		//Metal (common ore)
+		if(pickednum >= 2)
+			var/obj/item/stack/sheet/metal/M = getFromPool(/obj/item/stack/sheet/metal, get_turf(src))
+			M.amount = rand(common_min, common_max)
 
-	//Plasma (rare ore)
-	if(pickednum >= 15)
-		new /obj/item/stack/sheet/mineral/plasma(src, rand(rare_min, rare_max))
+		//Glass (common ore)
+		if(pickednum >= 5)
+			new /obj/item/stack/sheet/glass/glass(src, rand(common_min, common_max))
 
-	//Silver (rare ore)
-	if(pickednum >= 20)
-		new /obj/item/stack/sheet/mineral/silver(src, rand(rare_min, rare_max))
+		//Plasteel (common ore) Because it has a million more uses then plasma
+		if(pickednum >= 10)
+			new /obj/item/stack/sheet/plasteel(src, rand(common_min, common_max))
 
-	//Gold (rare ore)
-	if(pickednum >= 30)
-		new /obj/item/stack/sheet/mineral/gold(src, rand(rare_min, rare_max))
+		//Plasma (rare ore)
+		if(pickednum >= 15)
+			new /obj/item/stack/sheet/mineral/plasma(src, rand(rare_min, rare_max))
 
-	//Uranium (rare ore)
-	if(pickednum >= 40)
-		new /obj/item/stack/sheet/mineral/uranium(src, rand(rare_min, rare_max))
+		//Silver (rare ore)
+		if(pickednum >= 20)
+			new /obj/item/stack/sheet/mineral/silver(src, rand(rare_min, rare_max))
 
-	//Diamond (rare HONK)
-	if(pickednum >= 45)
-		new /obj/item/stack/sheet/mineral/diamond(src, rand(rare_min, rare_max))
+		//Gold (rare ore)
+		if(pickednum >= 30)
+			new /obj/item/stack/sheet/mineral/gold(src, rand(rare_min, rare_max))
 
-	//Jetpack (You hit the jackpot!)
-	if(pickednum == 50)
-		new /obj/item/weapon/tank/jetpack/carbondioxide(src)
+		//Uranium (rare ore)
+		if(pickednum >= 40)
+			new /obj/item/stack/sheet/mineral/uranium(src, rand(rare_min, rare_max))
+
+		//Diamond (rare HONK)
+		if(pickednum >= 45)
+			new /obj/item/stack/sheet/mineral/diamond(src, rand(rare_min, rare_max))
+
+		//Jetpack (You hit the jackpot!)
+		if(pickednum == 50)
+			new /obj/item/weapon/tank/jetpack/carbondioxide(src)
+
+		return
 
 /obj/structure/closet/syndicate/resources/everything
 	desc = "It's an emergency storage closet for repairs."
 
-/obj/structure/closet/syndicate/resources/everything/spawn_contents()
-	var/list/resources = list(
+	New()
+		var/list/resources = list(
 		/obj/item/stack/sheet/metal,
 		/obj/item/stack/sheet/glass/glass,
 		/obj/item/stack/sheet/mineral/gold,
@@ -108,13 +124,17 @@
 		/obj/item/stack/sheet/mineral/diamond,
 		/obj/item/stack/sheet/mineral/clown,
 		/obj/item/stack/sheet/plasteel,
-		/obj/item/stack/rods,
-	)
+		/obj/item/stack/rods
+		)
 
-	for(var/i = 0, i<2, i++)
-		for(var/res in resources)
-			var/obj/item/stack/R = new res(src)
-			R.amount = R.max_amount
+		sleep(2)
+
+		for(var/i = 0, i<2, i++)
+			for(var/res in resources)
+				var/obj/item/stack/R = new res(src)
+				R.amount = R.max_amount
+
+		return
 
 /obj/structure/closet/vox_raiders
 	name = "vox armory closet"
@@ -123,15 +143,14 @@
 	icon_closed = "syndicate"
 	icon_opened = "syndicateopen"
 
-/obj/structure/closet/vox_raiders/atoms_to_spawn()
-	return list(
-		/obj/item/clothing/head/helmet/space/vox/pressure,
-		/obj/item/clothing/mask/breath/vox,
-		/obj/item/clothing/shoes/magboots/vox,
-		/obj/item/clothing/suit/space/vox/pressure,
-		/obj/item/clothing/under/vox/vox_casual,
-		/obj/item/weapon/tank/jetpack/nitrogen,
-	)
+	New()
+		sleep(2)
+		new /obj/item/clothing/head/helmet/space/vox/pressure(src)
+		new /obj/item/clothing/mask/breath/vox(src)
+		new /obj/item/clothing/shoes/magboots/vox(src)
+		new /obj/item/clothing/suit/space/vox/pressure(src)
+		new /obj/item/clothing/under/vox/vox_casual(src)
+		new /obj/item/weapon/tank/jetpack/nitrogen(src)
 
 
 /obj/structure/closet/vox_raiders/trader
@@ -141,11 +160,10 @@
 	icon_closed = "syndicate"
 	icon_opened = "syndicateopen"
 
-/obj/structure/closet/vox_raiders/trader/atoms_to_spawn()
-	return list(
-		/obj/abstract/map/spawner/space/vox/trader/spacesuit,
-		/obj/item/clothing/mask/breath/vox,
-		/obj/item/clothing/shoes/magboots/vox,
-		/obj/item/clothing/under/vox/vox_casual,
-		/obj/item/weapon/tank/jetpack/nitrogen,
-	)
+	New()
+		sleep(2)
+		new /obj/abstract/map/spawner/space/vox/trader/spacesuit(src)
+		new /obj/item/clothing/mask/breath/vox(src)
+		new /obj/item/clothing/shoes/magboots/vox(src)
+		new /obj/item/clothing/under/vox/vox_casual(src)
+		new /obj/item/weapon/tank/jetpack/nitrogen(src)

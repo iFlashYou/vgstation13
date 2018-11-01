@@ -11,9 +11,19 @@
 
 
 /obj/structure/closet/secure_closet/bar/New()
-	return list(
-		/obj/item/weapon/reagent_containers/food/drinks/beer = 10,
-	)
+	..()
+	//sleep(2) // why
+	new /obj/item/weapon/reagent_containers/food/drinks/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/beer( src )
+	return
 
 /obj/structure/closet/secure_closet/bar/update_icon()
 	if(broken)
