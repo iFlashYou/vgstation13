@@ -544,8 +544,10 @@
 	corpseback = /obj/item/weapon/storage/backpack
 	corpsebelt = null
 
-/obj/machinery/light/burnt
-	spawn_with_bulb = /obj/item/weapon/light/tube/burned
+/obj/machinery/light/burnt/New()
+	status = LIGHT_BURNED
+	update(0)
+	..()
 
 /obj/structure/closet/welded/New()
 	..()
