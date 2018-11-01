@@ -63,7 +63,7 @@
 
 	icon_state = prefix + "off"
 
-	if (node1 && on && !(stat & (NOPOWER|BROKEN)))
+	if (node && on && !(stat & (NOPOWER|BROKEN)))
 		var/state = ""
 		if (scrubbing)
 			state = "on"
@@ -140,7 +140,7 @@
 	CHECK_DISABLED(scrubbers)
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if (!node1)
+	if (!node)
 		return // Let's not shut it off, for now.
 	if(welded)
 		return
