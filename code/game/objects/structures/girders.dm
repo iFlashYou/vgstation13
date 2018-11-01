@@ -374,9 +374,6 @@
 /obj/structure/girder/projectile_check()
 	return PROJREACT_WALLS
 
-/obj/structure/girder/clockworkify()
-	GENERIC_CLOCKWORK_CONVERSION(src, /obj/structure/girder/clockwork, CLOCKWORK_GENERIC_GLOW)
-
 /obj/structure/girder/displaced
 	name = "displaced girder"
 	icon_state = "displaced"
@@ -472,9 +469,6 @@
 	construction_length = 80
 
 /obj/structure/girder/clockwork/cultify()
-	return
-
-/obj/structure/girder/clockwork/clockworkify()
 	return
 
 /obj/structure/girder/clockwork/update_icon()

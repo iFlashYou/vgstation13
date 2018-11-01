@@ -199,8 +199,5 @@
 //	dismantle_type = /turf/simulated/floor/engine/clockwork // SOON
 	girder_type = /obj/structure/girder/clockwork
 
-/turf/simulated/wall/mineral/clockwork/cultify()
-	return
-
-/turf/simulated/wall/mineral/clockwork/clockworkify()
+/turf/simulated/wall/clockwork/cultify()
 	return
