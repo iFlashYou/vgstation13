@@ -257,12 +257,11 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 				target.targetted_by = null
 				src.target = null
 		return
-	if(isturf(loc))
-		if(src.path.len > 0 && src.target && (src.target != null))
-			step_to(src, src.path[1])
-			src.path -= src.path[1]
-		else if(src.path.len == 1)
-			step_to(src, target)
+	if(src.path.len > 0 && src.target && (src.target != null))
+		step_to(src, src.path[1])
+		src.path -= src.path[1]
+	else if(src.path.len == 1)
+		step_to(src, target)
 
 	if(src.target && (src.target != null))
 		patrol_path = null
@@ -275,8 +274,6 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 	src.oldloc = src.loc
 
 /obj/machinery/bot/cleanbot/proc/patrol_move()
-	if(!isturf(loc))
-		return
 	if (src.patrol_path.len <= 0)
 		return
 

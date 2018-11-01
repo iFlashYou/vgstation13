@@ -282,13 +282,12 @@ var/global/list/floorbot_targets=list()
 				floorbot_targets -= src.target
 				src.target = null
 		return 1
-	if(isturf(loc))
-		if(src.path.len > 0 && src.target && (src.target != null))
-			step_to(src, src.path[1])
-			src.path -= src.path[1]
-		else if(src.path.len == 1)
-			step_to(src, target)
-			src.path = new()
+	if(src.path.len > 0 && src.target && (src.target != null))
+		step_to(src, src.path[1])
+		src.path -= src.path[1]
+	else if(src.path.len == 1)
+		step_to(src, target)
+		src.path = new()
 
 	if(src.loc == src.target || src.loc == src.target.loc)
 		if(istype(src.target, /obj/item/stack/tile/plasteel))
@@ -518,8 +517,6 @@ var/global/list/floorbot_targets=list()
 // perform a single patrol step
 
 /obj/machinery/bot/floorbot/proc/patrol_step()
-	if(!isturf(loc))
-		return
 
 
 	if(loc == patrol_target)		// reached target
