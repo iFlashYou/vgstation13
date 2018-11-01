@@ -463,8 +463,6 @@ Auto Patrol: []"},
 // perform a single patrol step
 
 /obj/machinery/bot/ed209/proc/patrol_step()
-	if(!isturf(loc))
-		return
 
 
 	if(loc == patrol_target)		// reached target
