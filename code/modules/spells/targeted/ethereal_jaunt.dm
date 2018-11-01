@@ -148,7 +148,7 @@
 	override_base = "cult"
 
 /spell/targeted/ethereal_jaunt/vamp
-	name = "Mist Form (20)"
+	name = "Mist Form"
 	desc = "This spell allows you to pass through walls and other dense objects."
 	user_type = USER_TYPE_VAMPIRE
 

@@ -1,5 +1,5 @@
 /spell/targeted/hypnotise
-	name = "Hypnotise (10)"
+	name = "Hypnotise"
 	desc = "A piercing stare that incapacitates your victim for a good length of time."
 	abbreviation = "HN"
 
