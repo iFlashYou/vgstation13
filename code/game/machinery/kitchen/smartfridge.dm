@@ -299,19 +299,16 @@
 		insert_item(O)
 		user.visible_message(	"<span class='notice'>[user] has added \the [O] to \the [src].", \
 								"<span class='notice'>You add \the [O] to \the [src].")
-		updateUsrDialog()
 		return TRUE
 	else
 		return dump_bag(O, user)
 
 /obj/machinery/smartfridge/proc/insert_item(var/obj/item/O)
-	var/formatted_name = format_text(O.name)
-	var/datum/fridge_pile/thisPile = piles[formatted_name]
+	var/datum/fridge_pile/thisPile = piles[O.name]
 	if(istype(thisPile))
 		thisPile.addAmount(1)
 	else
-		piles[formatted_name] = new/datum/fridge_pile(formatted_name, src, 1, costly_bicon(O))
-
+		piles[O.name] = new/datum/fridge_pile(O.name, src, 1, costly_bicon(O))
 
 /obj/machinery/smartfridge/proc/dump_bag(var/obj/item/weapon/storage/bag/B, var/mob/user)
 	if(!istype(B))
@@ -329,7 +326,6 @@
 							"<span class='notice'>You load \the [src] with \the [B].</span>")
 		if(B.contents.len > 0)
 			to_chat(user, "<span class='notice'>Some items are refused.</span>")
-	updateUsrDialog()
 	return TRUE
 
 /obj/machinery/smartfridge/attackby(var/obj/item/O as obj, var/mob/user as mob, params)
@@ -455,10 +451,10 @@
 
 	usr.set_machine(src)
 
-	var/formatted_name = format_text(href_list["pile"])
+	var/N = href_list["pile"]
 	if(href_list["amount"])
 		var/amount = text2num(href_list["amount"])
-		var/datum/fridge_pile/thisPile = piles[formatted_name]
+		var/datum/fridge_pile/thisPile = piles[N]
 		if(!istype(thisPile)) // Sanity check, there are probably ways to press the button when it shouldn't be possible.
 			return
 
@@ -466,14 +462,14 @@
 
 		var/i = amount
 		for(var/obj/O in contents)
-			if(format_text(O.name) == formatted_name)
+			if(O.name == N)
 				O.forceMove(src.loc)
 				i--
 				if(i <= 0)
 					break
 
 	else if(href_list["shelf"])
-		var/datum/fridge_pile/thisPile = piles[formatted_name]
+		var/datum/fridge_pile/thisPile = piles[N]
 		if(href_list["shelf"] == "up" && thisPile.shelf > 1)
 			thisPile.shelf -= 1
 		else if(href_list["shelf"] == "down" && thisPile.shelf < MAX_SHELVES)
