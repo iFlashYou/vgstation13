@@ -38,12 +38,10 @@
 /obj/effect/Destroy()
 	if(ticker)
 		cameranet.updateVisibility(src)
-	effects_list -= src
 	..()
 
 /obj/effect/New()
 	..()
-	effects_list += src
 	if(ticker)
 		cameranet.updateVisibility(src)
 
