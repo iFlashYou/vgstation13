@@ -76,7 +76,6 @@
 
 /obj/machinery/disease2/diseaseanalyser/process()
 	if(stat & (NOPOWER|BROKEN))
-		icon_state = "analyser"
 		return
 	use_power(500)
 
