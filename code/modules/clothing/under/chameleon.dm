@@ -7,47 +7,46 @@
 	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
 	origin_tech = Tc_SYNDICATE + "=3"
 	siemens_coefficient = 0.8
-	permeability_coefficient = 0.90
 	species_fit = list(GREY_SHAPED)
 	var/list/clothing_choices = list()
 
-/obj/item/clothing/under/chameleon/New()
-	..()
-	verbs += /obj/item/clothing/under/chameleon/proc/Change_Color
-	for(var/U in typesof(/obj/item/clothing/under/color)-(/obj/item/clothing/under/color))
-		var/obj/item/clothing/under/V = new U
-		clothing_choices += V
+	New()
+		..()
+		verbs += /obj/item/clothing/under/chameleon/proc/Change_Color
+		for(var/U in typesof(/obj/item/clothing/under/color)-(/obj/item/clothing/under/color))
+			var/obj/item/clothing/under/V = new U
+			src.clothing_choices += V
 
-	for(var/U in typesof(/obj/item/clothing/under/rank)-(/obj/item/clothing/under/rank))
-		var/obj/item/clothing/under/V = new U
-		clothing_choices += V
-	return
-
-
-/obj/item/clothing/under/chameleon/attackby(obj/item/clothing/under/U, mob/user)
-	..()
-	if(istype(U, /obj/item/clothing/under/chameleon))
-		to_chat(user, "<span class='warning'>Nothing happens.</span>")
+		for(var/U in typesof(/obj/item/clothing/under/rank)-(/obj/item/clothing/under/rank))
+			var/obj/item/clothing/under/V = new U
+			src.clothing_choices += V
 		return
-	if(istype(U, /obj/item/clothing/under))
-		if(clothing_choices.Find(U))
-			to_chat(user, "<span class='warning'>Pattern is already recognised by the suit.</span>")
+
+
+	attackby(obj/item/clothing/under/U as obj, mob/user as mob)
+		..()
+		if(istype(U, /obj/item/clothing/under/chameleon))
+			to_chat(user, "<span class='warning'>Nothing happens.</span>")
 			return
-		clothing_choices += U
-		to_chat(user, "<span class='warning'>Pattern absorbed by the suit.</span>")
+		if(istype(U, /obj/item/clothing/under))
+			if(src.clothing_choices.Find(U))
+				to_chat(user, "<span class='warning'>Pattern is already recognised by the suit.</span>")
+				return
+			src.clothing_choices += U
+			to_chat(user, "<span class='warning'>Pattern absorbed by the suit.</span>")
 
 
-/obj/item/clothing/under/chameleon/emp_act(severity)
-	name = "psychedelic"
-	desc = "Groovy!"
-	icon_state = "psyche"
-	_color = "psyche"
-	spawn(20 SECONDS)
-		name = initial(name)
-		icon_state = initial(icon_state)
-		_color = initial(_color)
-		desc = initial(desc)
-	..()
+	emp_act(severity)
+		name = "psychedelic"
+		desc = "Groovy!"
+		icon_state = "psyche"
+		_color = "psyche"
+		spawn(200)
+			name = "Black Jumpsuit"
+			icon_state = "bl_suit"
+			_color = "black"
+			desc = null
+		..()
 
 
 /obj/item/clothing/under/chameleon/proc/Change_Color()
@@ -56,10 +55,12 @@
 		return
 
 	var/obj/item/clothing/under/A
-	A = input("Select the jumpsuit's new appearance.", "BOOYEA", A) in null|clothing_choices
-	if(!A || usr.incapacitated() || !Adjacent(usr))
+	A = input("Select the jumpsuit's new appearance.", "BOOYEA", A) in clothing_choices
+	if(!A)
 		return
-	to_chat(usr, "<span class='notice'>You turn the dial and \the [src] changes its color.</span>")
+
+	desc = null
+	permeability_coefficient = 0.90
 
 	desc = A.desc
 	name = A.name
@@ -75,24 +76,22 @@
 	//to prevent an infinite loop
 	for(var/U in typesof(/obj/item/clothing/under)-blocked)
 		var/obj/item/clothing/under/V = new U
-		clothing_choices += V
+		src.clothing_choices += V
 
 /obj/item/clothing/under/chameleon/cold
 	heat_conductivity = 1000
 	var/registered_user = null
 
-/obj/item/clothing/under/chameleon/cold/attack_self(mob/user)
+/obj/item/clothing/under/chameleon/cold/attack_self(mob/user as mob)
 	if(!registered_user || registered_user == user)
 		if(!registered_user)
-			to_chat(user, "You are registered as the user of this suit.")
+			to_chat(usr, "You are registered as the user of this suit")
 			registered_user = user
 		if(!(/obj/item/clothing/under/chameleon/proc/Change_Color in verbs))
 			verbs += /obj/item/clothing/under/chameleon/proc/Change_Color
-			to_chat(user, "<span class='notice'>You reveal the hidden dial on \the [src].</span>")
 			return
 		if(/obj/item/clothing/under/chameleon/proc/Change_Color in verbs)
 			verbs -= /obj/item/clothing/under/chameleon/proc/Change_Color
-			to_chat(user, "<span class='notice'>You hide \the [src]'s dial.</span>")
 			return
 
 /obj/item/clothing/under/chameleon/cold/attackby(obj/item/clothing/under/U, mob/user)
