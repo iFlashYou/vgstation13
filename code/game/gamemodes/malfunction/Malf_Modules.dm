@@ -9,8 +9,10 @@ eject engine
 core sheild
 cable stun
 rcd light flash thingy on matter drain
-*/
 
+
+
+*/
 #define MALFUNCTION "Malfunction"
 /datum/AI_Module
 	var/uses = 0
@@ -80,9 +82,9 @@ rcd light flash thingy on matter drain
 	override_base = "grey"
 
 /spell/aoe_turf/disable_rcd/cast(list/targets, mob/user)
-	for(var/obj/item/device/rcd/matter/engineering/rcd in rcd_list)
+	for(var/obj/item/device/rcd/matter/engineering/rcd in world)
 		rcd.disabled = 1
-	for(var/obj/item/mecha_parts/mecha_equipment/tool/red/red in red_tool_list)
+	for(var/obj/item/mecha_parts/mecha_equipment/tool/red/red in world)
 		red.disabled = 1
 	to_chat(src, "RCD-disabling pulse emitted.")
 
