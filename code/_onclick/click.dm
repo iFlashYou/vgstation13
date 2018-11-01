@@ -237,8 +237,7 @@
 	Not currently used by anything but could easily be.
 */
 /mob/proc/RestrainedClickOn(var/atom/A)
-	if(INVOKE_EVENT(on_ruattack,list("atom"=A))) //This returns 1 when doing an action intercept
-		return
+	return
 
 /*
 	Middle click
